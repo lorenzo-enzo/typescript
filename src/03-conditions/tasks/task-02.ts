@@ -29,3 +29,5 @@ if (performanceScore >= 80) {
     console.log(`Employee: ${employeeName}`);
     console.log("Result: Bonus not approved");
 }
+
+
