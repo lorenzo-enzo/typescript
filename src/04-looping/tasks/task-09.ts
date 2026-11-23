@@ -16,13 +16,45 @@
  * - Average score
  */
 
-const students = [
-    { name: "Alya", score: 88 },
-    { name: "Budi", score: 71 },
-    { name: "Citra", score: 95 },
-    { name: "Dimas", score: 63 },
-    { name: "Eka", score: 84 },
-    { name: "Fajar", score: 79 },
-    { name: "Gita", score: 92 },
-    { name: "Hana", score: 67 }
-];
+const grades: number[] = [];
+
+let countA = 0;
+let countB = 0;
+let countC = 0;
+let countD = 0;
+let highestScore = grades.length > 0 ? grades[0] : 0;
+let lowestScore = grades.length > 0 ? grades[0] : 0;
+let totalScore = 0;
+
+for (let i = 0; i < grades.length; i++) {
+  const score = grades[i];
+  totalScore += score;
+
+  if (score > highestScore) {
+    highestScore = score;
+  }
+
+  if (score < lowestScore) {
+    lowestScore = score;
+  }
+
+  if (score >= 90) {
+    countA++;
+  } else if (score >= 80) {
+    countB++;
+  } else if (score >= 70) {
+    countC++;
+  } else {
+    countD++;
+  }
+}
+
+const averageScore = grades.length > 0 ? totalScore / grades.length : 0;
+
+console.log("Number of A students: " + countA);
+console.log("Number of B students: " + countB);
+console.log("Number of C students: " + countC);
+console.log("Number of D students: " + countD);
+console.log("Highest score: " + highestScore);
+console.log("Lowest score: " + lowestScore);
+console.log("Average score: " + averageScore);

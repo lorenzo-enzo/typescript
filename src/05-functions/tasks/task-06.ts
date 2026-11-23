@@ -12,35 +12,65 @@
  * Create the following functions:
  */
 
-const sales = [
-  125000,
-  780000,
+const transactions: number[] = [
   250000,
-  99000,
-  540000,
-  670000,
+  620000,
   180000,
+  950000,
   450000,
+  780000,
   310000,
-  820000
+  540000
 ];
 
 function calculateTotalSales(sales: number[]): number {
-
+  let total = 0;
+  for (let i = 0; i < sales.length; i++) {
+    total += sales[i];
+  }
+  return total;
 }
 
 function findHighestTransaction(sales: number[]): number {
-
+  let highest = sales[0];
+  for (let i = 1; i < sales.length; i++) {
+    if (sales[i] > highest) {
+      highest = sales[i];
+    }
+  }
+  return highest;
 }
 
 function findLowestTransaction(sales: number[]): number {
-
+  let lowest = sales[0];
+  for (let i = 1; i < sales.length; i++) {
+    if (sales[i] < lowest) {
+      lowest = sales[i];
+    }
+  }
+  return lowest;
 }
 
-function calculateAverageSale(sales: number[]): number {
-
+function calculateAverageTransaction(sales: number[]): number {
+  return sales.length > 0 ? calculateTotalSales(sales) / sales.length : 0;
 }
 
-function countLargeTransactions(sales: number[], minimumAmount: number): number {
-
+function countHighTransactions(sales: number[]): number {
+  let count = 0;
+  for (let i = 0; i < sales.length; i++) {
+    if (sales[i] > 500000) {
+      count++;
+    }
+  }
+  return count;
 }
+
+function displaySalesDashboard(sales: number[]): void {
+  console.log("Total sales: Rp" + calculateTotalSales(sales));
+  console.log("Highest transaction: Rp" + findHighestTransaction(sales));
+  console.log("Lowest transaction: Rp" + findLowestTransaction(sales));
+  console.log("Average transaction: Rp" + calculateAverageTransaction(sales));
+  console.log("Number of transactions above Rp500,000: " + countHighTransactions(sales));
+}
+
+displaySalesDashboard(transactions);

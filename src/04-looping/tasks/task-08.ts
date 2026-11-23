@@ -13,11 +13,25 @@
  * - Number of orders waiting for stock
  * - Display all order IDs that are ready to ship
  */
-const orders = [
-  { id: "ORD001", paid: true, stockAvailable: true },
-  { id: "ORD002", paid: false, stockAvailable: true },
-  { id: "ORD003", paid: true, stockAvailable: false },
-  { id: "ORD004", paid: true, stockAvailable: true },
-  { id: "ORD005", paid: false, stockAvailable: false },
-  { id: "ORD006", paid: true, stockAvailable: true }
-];
+const orders: { id: string; isPaid: boolean; isStockAvailable: boolean }[] = [];
+
+let readyToShipCount = 0;
+let unpaidCount = 0;
+let waitingForStockCount = 0;
+const readyToShipIds: string[] = [];
+
+for (let i = 0; i < orders.length; i++) {
+  if (!orders[i].isPaid) {
+    unpaidCount++;
+  } else if (!orders[i].isStockAvailable) {
+    waitingForStockCount++;
+  } else {
+    readyToShipCount++;
+    readyToShipIds.push(orders[i].id);
+  }
+}
+
+console.log("Number of orders ready to ship: " + readyToShipCount);
+console.log("Number of unpaid orders: " + unpaidCount);
+console.log("Number of orders waiting for stock: " + waitingForStockCount);
+console.log("Order IDs ready to ship: " + readyToShipIds.join(", "));

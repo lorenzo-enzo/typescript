@@ -13,10 +13,36 @@
  * - Display the report inside the function.
  * - The function should not return any value.
  */
-const attendances = [
-    { name: "Alya", present: true },
-    { name: "Budi", present: false },
-    { name: "Citra", present: true },
-    { name: "Dimas", present: true },
-    { name: "Eka", present: false }
+
+interface StudentAttendance {
+  name: string;
+  isPresent: boolean;
+}
+
+function printAttendanceReport(attendanceList: StudentAttendance[]): void {
+  let totalPresent = 0;
+  let totalAbsent = 0;
+  const absentStudents: string[] = [];
+
+  for (let i = 0; i < attendanceList.length; i++) {
+    if (attendanceList[i].isPresent) {
+      totalPresent++;
+    } else {
+      totalAbsent++;
+      absentStudents.push(attendanceList[i].name);
+    }
+  }
+
+  console.log("Total Present: " + totalPresent);
+  console.log("Total Absent: " + totalAbsent);
+  console.log("Names of absent students: " + absentStudents.join(", "));
+}
+
+const attendanceData: StudentAttendance[] = [
+  { name: "Alya", isPresent: true },
+  { name: "Budi", isPresent: false },
+  { name: "Citra", isPresent: true },
+  { name: "Dimas", isPresent: false }
 ];
+
+printAttendanceReport(attendanceData);

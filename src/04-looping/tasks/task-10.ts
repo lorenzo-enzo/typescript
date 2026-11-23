@@ -15,13 +15,43 @@
  * - Calculate the class average score.
  */
 
-const submissions = [
-    { student: "Alya", submitted: true, score: 92 },
-    { student: "Budi", submitted: false, score: 0 },
-    { student: "Citra", submitted: true, score: 78 },
-    { student: "Dimas", submitted: true, score: 65 },
-    { student: "Eka", submitted: false, score: 0 },
-    { student: "Fajar", submitted: true, score: 84 },
-    { student: "Gita", submitted: true, score: 90 },
-    { student: "Hana", submitted: true, score: 73 }
-];
+const submissions: { name: string; isSubmitted: boolean; score: number }[] = [];
+
+let submittedCount = 0;
+let notSubmittedCount = 0;
+let passedCount = 0;
+let revisionCount = 0;
+let totalScore = 0;
+
+const notSubmittedNames: string[] = [];
+const revisionNames: string[] = [];
+
+for (let i = 0; i < submissions.length; i++) {
+  const student = submissions[i];
+
+  if (!student.isSubmitted) {
+    notSubmittedCount++;
+    notSubmittedNames.push(student.name);
+    totalScore += 0;
+  } else {
+    submittedCount++;
+    totalScore += student.score;
+
+    if (student.score >= 75) {
+      passedCount++;
+    } else {
+      revisionCount++;
+      revisionNames.push(student.name);
+    }
+  }
+}
+
+const averageScore = submissions.length > 0 ? totalScore / submissions.length : 0;
+
+console.log("Students who submitted: " + submittedCount);
+console.log("Students who did not submit: " + notSubmittedCount);
+console.log("Students who passed: " + passedCount);
+console.log("Students who must revise: " + revisionCount);
+console.log("Did not submit: " + notSubmittedNames.join(", "));
+console.log("Must revise: " + revisionNames.join(", "));
+console.log("Class average score: " + averageScore);
