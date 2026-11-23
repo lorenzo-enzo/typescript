@@ -23,34 +23,33 @@
 
  */
 
-const mechanicalKeyboardPrice: number = 850000;
-const mechanicalKeyboardQuantity: number = 1;
-const wirelessMousePrice: number = 275000;
-const wirelessMouseQuantity: number = 2;
-const mousePadPrice: number = 120000;
-const mousePadQuantity: number = 1;
+const keyboardPrice = 850000;
+const keyboardQty = 1;
+const mousePrice = 275000;
+const mouseQty = 2;
+const mousePadPrice = 120000;
+const mousePadQty = 1;
+const isPremiumMember = true;
 
-const subtotal: number = (mechanicalKeyboardPrice * mechanicalKeyboardQuantity) +
-                        (wirelessMousePrice * wirelessMouseQuantity) +
-                        (mousePadPrice * mousePadQuantity);
+const subtotal = (keyboardPrice * keyboardQty) + (mousePrice * mouseQty) + (mousePadPrice * mousePadQty);
 
-let totalItems: number = 0;
-totalItems += mechanicalKeyboardQuantity;
-totalItems += wirelessMouseQuantity;
-totalItems += mousePadQuantity;
-
-const isPremiumMember: boolean = true;
-const discountThreshold: number = 1000000;
-const discountRate: number = 0.10;
-
-const discount: number = subtotal > discountThreshold ? subtotal * discountRate : 0;
-const finalPayment: number = subtotal - discount;
-
-console.log("Subtotal:", subtotal);
-console.log("Total Items Purchased:", totalItems);
-if (discount > 0) {
-    console.log("Discount Applied:", discount);
-} else {
-    console.log("No Discount Applied");
+let totalItems = 0;
+for (let i = 0; i < keyboardQty; i++) {
+  totalItems++;
 }
-console.log("Final Payment:", finalPayment);
+for (let i = 0; i < mouseQty; i++) {
+  totalItems++;
+}
+for (let i = 0; i < mousePadQty; i++) {
+  totalItems++;
+}
+
+const isDiscountApplied = subtotal > 1000000;
+const discount = isDiscountApplied ? subtotal * 0.1 : 0;
+const shippingCost = isPremiumMember ? 0 : 20000;
+const finalPayment = subtotal - discount + shippingCost;
+
+console.log("Subtotal: Rp" + subtotal);
+console.log("Total purchased items: " + totalItems);
+console.log("Discount applied: " + isDiscountApplied);
+console.log("Final payment: Rp" + finalPayment);

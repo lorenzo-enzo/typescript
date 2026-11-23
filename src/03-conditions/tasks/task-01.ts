@@ -21,38 +21,13 @@
  * otherwise display "You are not eligible to graduate."
  */
 
-const studentname: string = "Alya Putri";
-const finalscore: number = 82;
-const attendance: number = 94;
-const tuitionpaid: boolean = true;
+const studentName = "Alya Putri";
+const finalScore = 82;
+const attendance = 94;
+const tuitionPaid = true;
 
-if (finalscore >= 75 && attendance >= 90 && tuitionpaid) {
-    console.log("Congratulations! You're eligible to graduate.");
-} 
-
-else {
-    console.log("You aren't eligible to graduate.");
-}
-console.log('Student name:', studentname);
-console.log('Final score:', finalscore);
-console.log('Attendance:', attendance);
-console.log('Tuition paid:', tuitionpaid);
-console.log('Eligibility:', finalscore >= 75 && attendance >= 90 && tuitionpaid ? 'Eligible' : 'Not Eligible');
-console.log('-----------------------------------');
-console.log('Summary:');
-if (finalscore >= 75 && attendance >= 90 && tuitionpaid) {
-    console.log('Congratulations! You are eligible to graduate');
-}
-else {
-    console.log('You are not eligible to graduate');
-    console.log('Requirements not met:');
-    if (finalscore < 75) {
-        console.log('-Final score is below 75');
-    }
-    if (attendance < 90) {
-        console.log('-Attendance is below 90%');
-    }
-    if (!tuitionpaid) {
-        console.log('-Tuition fees have not been paid');
-    }
+if (finalScore >= 75 && attendance >= 90 && tuitionPaid) {
+  console.log("Congratulations! You are eligible to graduate.");
+} else {
+  console.log("You are not eligible to graduate.");
 }

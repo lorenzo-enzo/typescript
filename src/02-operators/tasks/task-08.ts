@@ -25,44 +25,20 @@
  * - Green Energy Program eligibility
  */
 
-// 1. Declare all variables based on today's information
-const previousMeter: number = 25640;
-const currentMeter: number = 25892;
-const pricePerKwh: number = 1650;
-const isSolarPanelInstalled: boolean = true; // Yes
-const isEnergySavingModeEnabled: boolean = false; // No
+const previousMeter = 25640;
+const currentMeter = 25892;
+const pricePerKwh = 1650;
+const hasSolarPanel = true;
+const isEnergySavingMode = false;
 
-// 2. Calculations
-// - Total energy consumption
-const totalEnergyConsumption: number = currentMeter - previousMeter;
+const totalEnergyConsumption = currentMeter - previousMeter;
+const electricityBill = totalEnergyConsumption * pricePerKwh;
+const solarDiscount = hasSolarPanel ? electricityBill * 0.2 : 0;
+const energySavingDiscount = isEnergySavingMode ? electricityBill * 0.05 : 0;
+const finalBill = electricityBill - solarDiscount - energySavingDiscount;
+const isGreenEnergyEligible = hasSolarPanel && totalEnergyConsumption < 300 && isEnergySavingMode;
 
-// - Electricity bill (before discount)
-const electricityBill: number = totalEnergyConsumption * pricePerKwh;
-
-// 3. Apply discounts based on business rules
-let discountPercentage: number = 0;
-
-if (isSolarPanelInstalled) {
-    discountPercentage += 0.20; // 20% discount
-}
-
-if (isEnergySavingModeEnabled) {
-    discountPercentage += 0.05; // Additional 5% discount
-}
-
-// - Final bill after discount
-const finalBill: number = electricityBill * (1 - discountPercentage);
-
-// - Green Energy Program eligibility
-let isEligibleForGreenProgram: boolean = false;
-
-if (isSolarPanelInstalled && totalEnergyConsumption < 300 && isEnergySavingModeEnabled) {
-    isEligibleForGreenProgram = true;
-}
-
-// 4. Display the results
-console.log(`Total Energy Consumption : ${totalEnergyConsumption} kWh`);
-console.log(`Base Electricity Bill    : Rp ${electricityBill}`);
-console.log(`Applied Discount         : ${discountPercentage * 100}%`);
-console.log(`Final Bill               : Rp ${finalBill}`);
-console.log(`Green Energy Program     : ${isEligibleForGreenProgram ? "Eligible" : "Not Eligible"}`);
+console.log("Total energy consumption: " + totalEnergyConsumption + " kWh");
+console.log("Electricity bill: Rp" + electricityBill);
+console.log("Final bill: Rp" + finalBill);
+console.log("Green Energy Program eligibility: " + isGreenEnergyEligible);

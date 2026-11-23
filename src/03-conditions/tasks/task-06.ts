@@ -24,26 +24,24 @@
  * 3. Display the patient's destination.
  */
 
-// Patient Information
-let patientName = "Siti Rahma";
-let criticalCondition = false;
-let hasAppointment = true;
-let age = 67;
-let hasInsurance = true;
+const patientName = "Siti Rahma";
+const isCritical = false;
+const hasAppointment = true;
+const age = 67;
+const hasInsurance = true;
 
-// Hospital Workflow
-if (criticalCondition) {
-    console.log("Emergency Room");
+if (isCritical) {
+  console.log("Emergency Room");
 } else if (hasAppointment) {
-    if (age >= 60) {
-        console.log("Priority Queue");
-    } else {
-        console.log("Regular Queue");
-    }
+  if (age >= 60) {
+    console.log("Priority Queue");
+  } else {
+    console.log("Regular Queue");
+  }
 } else {
-    if (hasInsurance) {
-        console.log("Insurance Registration Counter");
-    } else {
-        console.log("General Registration Counter");
-    }
+  if (hasInsurance) {
+    console.log("Insurance Registration Counter");
+  } else {
+    console.log("General Registration Counter");
+  }
 }

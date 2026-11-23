@@ -36,53 +36,33 @@
 
  */
 
-// 1. Data Produk dan Jumlah Pembelian
-const keyboardPrice: number = 850000;
-const keyboardQty: number = 1;
+const keyboardPrice = 850000;
+const keyboardQty = 1;
+const mousePrice = 275000;
+const mouseQty = 2;
+const monitorStandPrice = 420000;
+const monitorStandQty = 1;
 
-const mousePrice: number = 275000;
-const mouseQty: number = 2;
+const voucherValue = 100000;
+const isPremiumMember = true;
+const rewardPointRate = 50000;
+const vatRate = 0.11;
 
-const standPrice: number = 420000;
-const standQty: number = 1;
+const productSubtotal = (keyboardPrice * keyboardQty) + (mousePrice * mouseQty) + (monitorStandPrice * monitorStandQty);
+const membershipDiscount = isPremiumMember ? productSubtotal * 0.1 : 0;
+const afterMembershipDiscount = productSubtotal - membershipDiscount;
+const voucherDeduction = afterMembershipDiscount >= voucherValue ? voucherValue : afterMembershipDiscount;
+const paymentBeforeTax = afterMembershipDiscount - voucherDeduction;
+const vat = paymentBeforeTax * vatRate;
+const finalPayment = paymentBeforeTax + vat;
+const rewardPoints = Math.floor(paymentBeforeTax / rewardPointRate);
+const isFreeShippingEligible = isPremiumMember || paymentBeforeTax > 1500000;
 
-// Informasi Pelanggan
-const voucherValue: number = 100000;
-const isPremiumMember: boolean = true; // Yes
-
-// 2. Proses Perhitungan Aturan Bisnis
-// - Perhitungan Subtotal Produk
-const productSubtotal: number = (keyboardPrice * keyboardQty) + (mousePrice * mouseQty) + (standPrice * standQty);
-
-// - Diskon Membership (10% jika Premium Member)
-const membershipDiscount: number = isPremiumMember ? productSubtotal * 0.10 : 0;
-
-// - Potongan Voucher (dihitung setelah diskon membership)
-const paymentAfterDiscount: number = productSubtotal - membershipDiscount;
-const voucherDeduction: number = voucherValue;
-
-// - Pembayaran Sebelum Pajak (Payment before tax)
-const paymentBeforeTax: number = paymentAfterDiscount - voucherDeduction;
-
-// - Pajak Pertambahan Nilai / PPN (VAT 11%)
-const vat: number = paymentBeforeTax * 0.11;
-
-// - Total Pembayaran Akhir (Final payment)
-const finalPayment: number = paymentBeforeTax + vat;
-
-// - Perhitungan Poin Reward (1 poin setiap kelipatan kelipatan Rp50.000 dari sebelum pajak)
-const rewardPoints: number = Math.floor(paymentBeforeTax / 50000);
-
-// - Kelayakan Gratis Ongkir (Premium member ATAU belanja sebelum pajak > Rp1.500.000)
-const isEligibleForFreeShipping: boolean = isPremiumMember || paymentBeforeTax > 1500000;
-
-// 3. Menampilkan Hasil Evaluasi Sistem
-console.log(`Product Subtotal        : Rp ${productSubtotal}`);
-console.log(`Membership Discount     : Rp ${membershipDiscount}`);
-console.log(`Voucher Deduction       : Rp ${voucherDeduction}`);
-console.log(`Payment Before Tax      : Rp ${paymentBeforeTax}`);
-console.log(`VAT (11%)               : Rp ${vat}`);
-console.log(`-----------------------------------------`);
-console.log(`Final Payment           : Rp ${finalPayment}`);
-console.log(`Reward Points Earned    : ${rewardPoints} points`);
-console.log(`Free Shipping Status    : ${isEligibleForFreeShipping ? "Eligible" : "Not Eligible"}`);
+console.log("Product subtotal: Rp" + productSubtotal);
+console.log("Membership discount: Rp" + membershipDiscount);
+console.log("Voucher deduction: Rp" + voucherDeduction);
+console.log("Payment before tax: Rp" + paymentBeforeTax);
+console.log("VAT: Rp" + vat);
+console.log("Final payment: Rp" + finalPayment);
+console.log("Reward points: " + rewardPoints);
+console.log("Free shipping eligibility: " + isFreeShippingEligible);

@@ -34,25 +34,24 @@
  * - Display whether the student is accepted.
  */
 
-const studentName: string = "Alya Putri";
-const gpa: number = 3.89;
-const familyIncome: number = 4200000;
-const competitionCount: number = 4;
-const hasDisciplinaryRecord: boolean = false;
-const documentsComplete: boolean = true;
+const studentName = "Alya Putri";
+const gpa = 3.89;
+const familyIncome = 4200000;
+const competitionCount = 4;
+const hasDisciplinaryRecord = false;
+const documentsComplete = true;
+const totalBudget = 500000000;
 
-const isEligible: boolean = gpa >= 3.75 && familyIncome < 5000000 && competitionCount >= 3 && !hasDisciplinaryRecord && documentsComplete;
+const isGpaQualified = gpa >= 3.75;
+const isIncomeQualified = familyIncome < 5000000;
+const isCompetitionQualified = competitionCount >= 3;
+const isCleanRecord = hasDisciplinaryRecord === false;
+const isDocumentsQualified = documentsComplete === true;
 
-const scholarshipAmount: number = isEligible ? 12000000 : 0;
-const totalScholarshipBudget: number = 500000000;
-const remainingBudget: number = totalScholarshipBudget - scholarshipAmount;
+const isAccepted = isGpaQualified && isIncomeQualified && isCompetitionQualified && isCleanRecord && isDocumentsQualified;
+const scholarshipAmount = isAccepted ? 12000000 : 0;
+const remainingBudget = totalBudget - scholarshipAmount;
 
-console.log("Student Name:", studentName);
-console.log("GPA:", gpa);
-console.log("Family Income:", familyIncome);
-console.log("Competition Count:", competitionCount);
-console.log("Has Disciplinary Record:", hasDisciplinaryRecord);
-console.log("Documents Complete:", documentsComplete);
-console.log("Is the student eligible for scholarship?", isEligible);
-console.log("Scholarship Amount:", scholarshipAmount);
-console.log("Remaining Scholarship Budget:", remainingBudget);
+console.log("Accepted: " + isAccepted);
+console.log("Scholarship amount: Rp" + scholarshipAmount);
+console.log("Remaining budget: Rp" + remainingBudget);

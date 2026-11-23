@@ -23,29 +23,20 @@
  * 3. Display the reservation result.
  */
 
-// 1. Deklarasi semua variabel berdasarkan data hari ini
 const customerName = "Nadia Putri";
 const isPremiumMember = true;
 const isRoomAvailable = false;
 
-// 2. Implementasi logika menggunakan nested if statements
 if (isRoomAvailable) {
-    // Jika kamar tersedia
-    if (isPremiumMember) {
-        console.log("Status: Kamar Tersedia");
-        console.log(`Hasil: ${customerName} mendapatkan free room upgrade!`);
-    } else {
-        console.log("Status: Kamar Tersedia");
-        console.log(`Hasil: ${customerName} mendapatkan kamar yang dipesan.`);
-    }
+  if (isPremiumMember) {
+    console.log("Free room upgrade");
+  } else {
+    console.log("Reserved room only");
+  }
 } else {
-    // Jika kamar TIDAK tersedia
-    if (isPremiumMember) {
-        console.log("Status: Kamar Penuh");
-        console.log(`Hasil: ${customerName} dimasukkan ke dalam priority waiting list.`);
-    } else {
-        console.log("Status: Kamar Penuh");
-        console.log(`Hasil: Mohon maaf ${customerName}, tidak ada kamar yang tersedia saat ini.`);
-    }
+  if (isPremiumMember) {
+    console.log("Placed on the priority waiting list");
+  } else {
+    console.log("No rooms are available");
+  }
 }
-

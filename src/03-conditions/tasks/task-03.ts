@@ -19,21 +19,16 @@
  * 3. Display the recommended package.
  */
 
-// 1. Declare all variables
-const customerName: string = "Raka Saputra";
-const monthlyUsageGB: number = 124;
-let recommendedPackage: string = "";
+const customerName = "Raka Saputra";
+const monthlyUsage = 124;
+let recommendedPackage;
 
-// 2. Implement the business rules using if...else if...else
-if (monthlyUsageGB < 50) {
-    recommendedPackage = "Basic";
-} else if (monthlyUsageGB >= 50 && monthlyUsageGB <= 150) {
-    recommendedPackage = "Standard";
+if (monthlyUsage < 50) {
+  recommendedPackage = "Basic";
+} else if (monthlyUsage <= 150) {
+  recommendedPackage = "Standard";
 } else {
-    recommendedPackage = "Premium";
+  recommendedPackage = "Premium";
 }
 
-// 3. Display the recommended package
-console.log(`Customer Name: ${customerName}`);
-console.log(`Monthly Usage: ${monthlyUsageGB} GB`);
-console.log(`Recommended Package: ${recommendedPackage}`);
+console.log(recommendedPackage);
